@@ -14,7 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $controller->processContact($firstName, $lastName, $email, $phone, $address);
-  } elseif ($_POST['show']) {
+  } elseif (isset($_POST['delete'])) {
+    $idToDelete = ($_POST['delete']);
+    $result = $controller->deleteContact($idToDelete);
+    header('location: index.php');
+  } elseif (isset($_POST['update'])) {
+    if (isset($_POST['saveUpdate'])) {
+      $idUpdate = ($_POST['update']);
+      $editFirstName = $_POST['editFirstName'];
+      $editLastName = $_POST['editLastName'];
+      $editEmail = $_POST['editEmail'];
+      $editPhone = $_POST['editPhone'];
+      $editAddress = $_POST['editAddress'];
+      $controller->updateContact($idUpdate, $editFirstName, $editLastName, $editEmail, $editPhone, $editAddress);
+    }
+  } elseif (isset($_POST['show'])) {
     $controller->processGetAll();
   }
 } else {

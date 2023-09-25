@@ -22,6 +22,20 @@ class Controller
     if (isset($_POST['show'])) {
       $data1 =  $this->model->getAllModel();
       include 'view/listContact.php';
+      exit;
     }
+  }
+
+  public function deleteContact($id)
+  {
+    return $this->model->deleteModel($id);
+    exit;
+  }
+
+  public function updateContact($idUpdate, $editFirstName, $editLastName, $editEmail, $editPhone, $editAddress)
+  {
+    return $this->model->updateModel($idUpdate, $editFirstName, $editLastName, $editEmail, $editPhone, $editAddress);
+    // include 'view/listContact.php';
+    exit;
   }
 }
